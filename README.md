@@ -38,8 +38,8 @@ EventHandler eventHandler = new EventHandler();
 Handler textMessageHandler = XXXXX;  
 Handler subscribeMessageHandler = XXXXX;  
 // 添加到对应的处理器中，并标注该处理类所处理的消息类型  
-messageHandler.addHandler(WxConstants.XML_TEXT, textMessageHandler);
-eventHandler.addEventHandler(WxConstants.EVT_SUBSCRIBE, bscribeMessageHandler);  
+messageHandler.addHandler(WxConstants.XML_TEXT, textMessageHandler);  
+eventHandler.addEventHandler(WxConstants.EVT_SUBSCRIBE, subscribeMessageHandler);  
 // 将消息处理器添加到服务类中，整个服务类初始化完毕  
 serviceHandler.addMessageHandler(messageHandler);  
 serviceHandler.addEventHandler(eventHandler);  

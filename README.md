@@ -34,7 +34,7 @@ MessageHandler messageHandler = new MessageHandler();
 // 事件消息处理器，用于管理所有事件消息处理器  
 EventHandler eventHandler = new EventHandler();  
 
-// 开发人员的消息处理实现类
+// 开发人员的消息处理实现类  
 Handler textMessageHandler = XXXXX;  
 Handler subscribeMessageHandler = XXXXX;  
 // 添加到对应的处理器中，并标注该处理类所处理的消息类型  

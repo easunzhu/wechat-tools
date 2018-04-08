@@ -11,7 +11,7 @@ import com.easun.wxtool.model.resp.ArticleMessageResp;
 import com.easun.wxtool.util.XmlUtil;
 
 /**
- * 返回消息转换类
+ * 返回图文消息转换类
  * 
  * @author dongxu.zhu
  *

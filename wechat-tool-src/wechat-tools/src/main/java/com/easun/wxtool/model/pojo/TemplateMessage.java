@@ -3,7 +3,10 @@ package com.easun.wxtool.model.pojo;
 import java.util.Map;
 
 /**
- * Create by dongxu.zhu on 2018年3月15日
+ * 模板消息对象
+ * 
+ * @author dongxu.zhu
+ *
  */
 public class TemplateMessage {
 

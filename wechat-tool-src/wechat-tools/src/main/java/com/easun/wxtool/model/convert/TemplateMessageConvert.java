@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.easun.wxtool.model.pojo.TemplateMessage;
 
 /**
- * 返回消息转换类
+ * 返回模板消息转换类
  * 
  * @author dongxu.zhu
  *

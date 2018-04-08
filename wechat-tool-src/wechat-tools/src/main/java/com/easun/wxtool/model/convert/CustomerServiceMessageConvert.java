@@ -11,7 +11,10 @@ import com.easun.wxtool.model.resp.TransInfo;
 import com.easun.wxtool.util.XmlUtil;
 
 /**
- * Create by dongxu.zhu on 2018年3月16日
+ * 客服转发
+ * 
+ * @author dongxu.zhu
+ *
  */
 public class CustomerServiceMessageConvert {
 

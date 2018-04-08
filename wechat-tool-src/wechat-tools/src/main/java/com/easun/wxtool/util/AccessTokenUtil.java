@@ -39,7 +39,6 @@ public class AccessTokenUtil {
 						throw new ToolException(jsonObject.getString("errcode"), jsonObject.getString("errmsg"));
 					}
 					String token = jsonObject.getString("access_token");
-					System.out.println(token);
 					accessToken = token;
 					expiresTime += time + 7200;
 				}

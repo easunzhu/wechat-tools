@@ -1,7 +1,10 @@
 package com.easun.wxtool.model.pojo;
 
 /**
- * Create by dongxu.zhu on 2018年4月2日
+ * 图文更新对象
+ * 
+ * @author dongxu.zhu
+ *
  */
 public class UpdateArticle {
 

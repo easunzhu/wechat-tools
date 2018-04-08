@@ -8,7 +8,7 @@ import com.easun.wxtool.model.resp.TextMessageResp;
 import com.easun.wxtool.util.XmlUtil;
 
 /**
- * 返回消息转换类
+ * 返回文本消息转换类
  * 
  * @author dongxu.zhu
  *

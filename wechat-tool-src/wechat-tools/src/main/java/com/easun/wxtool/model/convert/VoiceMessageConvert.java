@@ -9,7 +9,7 @@ import com.easun.wxtool.model.resp.VoiceMessageResp;
 import com.easun.wxtool.util.XmlUtil;
 
 /**
- * 返回消息转换类
+ * 返回语音消息转换类
  * 
  * @author dongxu.zhu
  *

@@ -3,7 +3,10 @@ package com.easun.wxtool.model.pojo;
 import java.util.List;
 
 /**
- * Create by dongxu.zhu on 2018年4月2日
+ * 图文对象
+ * 
+ * @author dongxu.zhu
+ *
  */
 public class Articles {
 

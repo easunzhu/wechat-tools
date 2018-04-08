@@ -5,7 +5,15 @@
 方便开发人员只需要关注业务实现，抛弃繁琐的公众号接入 
 
 若有什么BUG或建议，请联系：easun_zhu@foxmail.com，谢谢支持~ 
+  
+<br>
+## 2018.04.08 更新 版本号：1.0.1 <a href="https://github.com/easunzhu/wechat-tools/raw/master/jar/wechat-tools-1.0.1.jar">下载</a>  
+添加几个工具集  
+修复消息选择器BUG  
+优化部分代码  
+优化注释  
 
+<br>
 ### 依赖jar包：
 httpclient  
 commons-lang3  

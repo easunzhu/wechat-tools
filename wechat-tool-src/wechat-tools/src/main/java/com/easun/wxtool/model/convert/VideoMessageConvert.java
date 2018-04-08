@@ -9,7 +9,7 @@ import com.easun.wxtool.model.resp.VideoMessageResp;
 import com.easun.wxtool.util.XmlUtil;
 
 /**
- * 返回消息转换类
+ * 返回视频消息转换类
  * 
  * @author dongxu.zhu
  *

@@ -30,7 +30,7 @@ public class MessageReq {
 	private String latitude;
 	private String longitude;
 	private String precision;
-	private String massMsgID;
+	private Long massMsgID;
 	private String status;
 
 	public String getToUserName() {
@@ -258,12 +258,12 @@ public class MessageReq {
 		this.status = status;
 	}
 
-	public String getMassMsgID() {
+	public Long getMassMsgID() {
 		return massMsgID;
 	}
 
 	@XmlElement(name = "MsgID")
-	public void setMassMsgID(String massMsgID) {
+	public void setMassMsgID(Long massMsgID) {
 		this.massMsgID = massMsgID;
 	}
 

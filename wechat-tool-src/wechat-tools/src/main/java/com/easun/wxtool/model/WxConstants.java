@@ -2,6 +2,9 @@ package com.easun.wxtool.model;
 
 public class WxConstants {
 
+	// 微信API成功响应码
+	public static final String RESULT_SUCCESS = "0";
+
 	// 微信推送过来的消息的类型，和发送给微信xml格式消息的消息类型
 	public static final String XML_TEXT = "text";
 	public static final String XML_IMAGE = "image";
@@ -37,13 +40,13 @@ public class WxConstants {
 	public static final String MASS_VOICE = "voice";
 	public static final String MASS_IMAGE = "image";
 	public static final String MASS_VIDEO = "mpvideo";
+	public static final String MASS_WXCARD = "wxcard";
 
 	// 上传多媒体文件的类型
 	public static final String MEDIA_IMAGE = "image";
 	public static final String MEDIA_VOICE = "voice";
 	public static final String MEDIA_VIDEO = "video";
 	public static final String MEDIA_THUMB = "thumb";
-	public static final String MEDIA_FILE = "file";
 
 	// 文件类型
 	public static final String FILE_JPG = "jpeg";
@@ -104,14 +107,15 @@ public class WxConstants {
 	// 多媒体相关
 	public static final String URL_UPLOAD_TEMP_MEDIA = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
 	public static final String URL_DOWNLOAD_TEMP_MEDIA = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
-	public static final String URL_UPLOAD_MATERIAL_MEDIA = "https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=ACCESS_TOKEN";
+	public static final String URL_UPLOAD_MATERIAL_MEDIA =
+			"https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=ACCESS_TOKEN&type=TYPE";
 	public static final String URL_BATCHGET_MATERIAL_MEDIA_LIST =
 			"https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN";
 	public static final String URL_DOWNLOAD_MATERIAL_MEDIA = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=ACCESS_TOKEN";
 	public static final String URL_DELETE_MATERIAL_MEDIA = "https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=ACCESS_TOKEN";
 	public static final String URL_GET_MATERIAL_COUNT = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN";
 	public static final String URL_ADD_NEWS_MEDIA = "https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
-	public static final String URL_IMAGE_DOMAIN_CHANGE = "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=ACCESS_TOKEN";
+	public static final String URL_UPLOAD_IMAGE_MEDIA = "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=ACCESS_TOKEN";
 	public static final String URL_UPDATE_NEWS_MEDIA = "https://api.weixin.qq.com/cgi-bin/material/update_news?access_token=ACCESS_TOKEN";
 
 	// 用户分组管理相关

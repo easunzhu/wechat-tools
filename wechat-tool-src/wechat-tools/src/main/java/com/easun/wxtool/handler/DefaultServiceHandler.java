@@ -95,20 +95,20 @@ public class DefaultServiceHandler extends AbstractServiceHandler {
 				sb.append(new String(buffer, 0, read, "UTF-8"));
 			}
 			str = sb.toString();
-			ToolLog.log("receive user message ... \n {}", str);
+			ToolLog.log("receive user message ... \n{}", str);
 			if (null != encryptType && "aes".equals(encryptType)) {
 				ToolLog.log("start decrypt message ... ");
 				str = WxEncodingUtil.getInstance().decoding(msgSignature, timeStamp, nonce, str);
-				ToolLog.log("end decrypt message ... \n {}", str);
+				ToolLog.log("end decrypt message ... \n{}", str);
 			}
 			ToolLog.log("start handle message ...");
 			str = msgHandle(str);
-			ToolLog.log("end handle message ... \n {}", str);
+			ToolLog.log("end handle message ... \n{}", str);
 			if (StringUtils.isNotBlank(str)) {
 				if (null != encryptType && "aes".equals(encryptType)) {
 					ToolLog.log("start encrypt message ...");
 					str = WxEncodingUtil.getInstance().encoding(str, timeStamp, nonce);
-					ToolLog.log("end encrypt message ... \n {}", str);
+					ToolLog.log("end encrypt message ... \n{}", str);
 				}
 			}
 		} catch (Exception e) {

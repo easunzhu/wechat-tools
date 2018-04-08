@@ -49,7 +49,9 @@ public class CoreServlet extends HttpServlet {
 		// 添加消息处理器
 		Handler textMessageHandler = (Handler) wac.getBean("textMessageHandler");
 		Handler subscribeMessageHandler = (Handler) wac.getBean("subscribeMessageHandler");
+		Handler imageMessageHandler = (Handler) wac.getBean("imageMessageHandler");
 		messageHandler.addHandler(WxConstants.XML_TEXT, textMessageHandler);
+		messageHandler.addHandler(WxConstants.XML_IMAGE, imageMessageHandler);
 		eventHandler.addEventHandler(WxConstants.EVT_SUBSCRIBE, subscribeMessageHandler);
 		serviceHandler.addMessageHandler(messageHandler);
 		serviceHandler.addEventHandler(eventHandler);

@@ -32,7 +32,7 @@ public class MenuButtonUtil {
 	 * @throws ToolException
 	 */
 	public static boolean createMenu(List<L1Button> button) throws ToolException {
-		ToolLog.log("start create menu ...");
+		ToolLog.log("MenuButtonUtil.createMenu start ...");
 		if (null == button || button.size() == 0) {
 			throw new NullPointerException("MenuButtonComponents.createMenu button is null ...");
 		}
@@ -43,10 +43,10 @@ public class MenuButtonUtil {
 		ToolLog.log("create menu result ==> \n{} ...", result);
 		JSONObject jso = JSONObject.parseObject(result);
 		String code = jso.getString("errcode");
-		if (!"0".equals(code)) {
+		if (!WxConstants.RESULT_SUCCESS.equals(code)) {
 			throw new ToolException(code, jso.getString("errmsg"));
 		}
-		ToolLog.log("end create menu ...");
+		ToolLog.log("MenuButtonUtil.createMenu end ...");
 		return true;
 	}
 
@@ -57,7 +57,7 @@ public class MenuButtonUtil {
 	 * @throws ToolException
 	 */
 	public static Menu getMenu() throws ToolException {
-		ToolLog.log("start get menu ...");
+		ToolLog.log("MenuButtonUtil.getMenu start ...");
 		String url = WxConstants.URL_GET_MENU.replace("ACCESS_TOKEN", AccessTokenUtil.getAccessToken());
 		String result = HttpUtil.doGet(url);
 		ToolLog.log("get menu result ==> \n{} ...", result);
@@ -65,7 +65,7 @@ public class MenuButtonUtil {
 		if (StringUtils.isNotBlank(jso.getString("errcode"))) {
 			throw new ToolException(jso.getString("errcode"), jso.getString("errmsg"));
 		}
-		ToolLog.log("end get menu ...");
+		ToolLog.log("MenuButtonUtil.getMenu end ...");
 		return jso.toJavaObject(Menu.class);
 	}
 
@@ -76,16 +76,16 @@ public class MenuButtonUtil {
 	 * @throws ToolException
 	 */
 	public static boolean deleteMenu() throws ToolException {
-		ToolLog.log("start delete menu ...");
+		ToolLog.log("MenuButtonUtil.deleteMenu start ...");
 		String url = WxConstants.URL_DELETE_MENU.replace("ACCESS_TOKEN", AccessTokenUtil.getAccessToken());
 		String result = HttpUtil.doGet(url);
 		ToolLog.log("delete menu result ==> \n{} ...", result);
 		JSONObject jso = JSONObject.parseObject(result);
 		String code = jso.getString("errcode");
-		if (!"0".equals(code)) {
+		if (!WxConstants.RESULT_SUCCESS.equals(code)) {
 			throw new ToolException(code, jso.getString("errmsg"));
 		}
-		ToolLog.log("end delete menu ...");
+		ToolLog.log("MenuButtonUtil.deleteMenu end ...");
 		return true;
 	}
 
@@ -98,7 +98,7 @@ public class MenuButtonUtil {
 	 * @throws ToolException
 	 */
 	public static String createPersonalityMenu(List<L1Button> button, Matchrule matchrule) throws ToolException {
-		ToolLog.log("start create personality menu ...");
+		ToolLog.log("MenuButtonUtil.createPersonalityMenu start ...");
 		if (null == button) {
 			throw new NullPointerException("MenuButtonComponents.createPersonalityMenu button is null ...");
 		}
@@ -118,7 +118,7 @@ public class MenuButtonUtil {
 		if (StringUtils.isNotBlank(code)) {
 			throw new ToolException(code, jso.getString("errmsg"));
 		}
-		ToolLog.log("end create personality menu ...");
+		ToolLog.log("MenuButtonUtil.createPersonalityMenu end ...");
 		return jso.getString("menuid");
 	}
 
@@ -130,16 +130,16 @@ public class MenuButtonUtil {
 	 * @throws ToolException
 	 */
 	public static boolean deletePersonalityMenu(String menuid) throws ToolException {
-		ToolLog.log("start delete personality menu ...");
+		ToolLog.log("MenuButtonUtil.deletePersonalityMenu start ...");
 		String url = WxConstants.URL_DELETE_MENU_CONDITIONAL.replace("ACCESS_TOKEN", AccessTokenUtil.getAccessToken());
 		String result = HttpUtil.postJson(url, "{\"menuid\":\"" + menuid + "\"}");
 		ToolLog.log("delete personality menu result ==> \n{} ...", result);
 		JSONObject jso = JSONObject.parseObject(result);
 		String code = jso.getString("errcode");
-		if (!"0".equals(code)) {
+		if (!WxConstants.RESULT_SUCCESS.equals(code)) {
 			throw new ToolException(code, jso.getString("errmsg"));
 		}
-		ToolLog.log("end delete menu ...");
+		ToolLog.log("MenuButtonUtil.deletePersonalityMenu end ...");
 		return true;
 	}
 

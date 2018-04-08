@@ -1,6 +1,9 @@
 package com.easun.wxtool.util;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InterruptedIOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -11,6 +14,7 @@ import java.util.Map.Entry;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpRequest;
 import org.apache.http.NameValuePair;
@@ -31,13 +35,19 @@ import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.LayeredConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+
+import com.easun.wxtool.log.ToolLog;
 
 /**
  * Create by easun on 2017年5月18日
@@ -129,26 +139,57 @@ public class HttpUtil {
 	 * @return
 	 */
 	public static String postForm(String url, Map<String, String> params) {
+		return postForm(url, null, params);
+	}
+
+	/**
+	 * post form表单上传文件
+	 * 
+	 * @param url
+	 * @param file
+	 * @return
+	 */
+	public static String postForm(String url, File file) {
+		return postForm(url, file, null);
+	}
+
+	/**
+	 * post form表单
+	 * 
+	 * @param url 地址
+	 * @param file 文件
+	 * @param params 参数
+	 * @return
+	 */
+	public static String postForm(String url, File file, Map<String, String> params) {
 		CloseableHttpResponse response = null;
 		try {
 			HttpPost post = new HttpPost(url);
 			config(post);
-			List<NameValuePair> formparams = new ArrayList<>();
-			for (Entry<String, String> entry : params.entrySet()) {
-				formparams.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+			if (null != file) {
+				FileBody bin = new FileBody(file);
+				StringBody comment = new StringBody("A binary file of some kind", ContentType.TEXT_PLAIN);
+				HttpEntity reqEntity = MultipartEntityBuilder.create().addPart("bin", bin).addPart("comment", comment).build();
+				post.setEntity(reqEntity);
 			}
-			post.setEntity(new UrlEncodedFormEntity(formparams, "utf-8"));
+			if (null != params && params.size() > 0) {
+				List<NameValuePair> formparams = new ArrayList<>();
+				for (Entry<String, String> entry : params.entrySet()) {
+					formparams.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+				}
+				post.setEntity(new UrlEncodedFormEntity(formparams, "utf-8"));
+			}
 			response = (CloseableHttpResponse) getInstance().execute(post);
 			String result = EntityUtils.toString(response.getEntity(), "utf-8");
 			return result;
 		} catch (Exception e) {
-			e.printStackTrace();
+			ToolLog.log("HttpUtil.postForm error={}", e);
 		} finally {
 			if (response != null) {
 				try {
 					response.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					ToolLog.log("HttpUtil.postForm close response error={}", e);
 				}
 			}
 		}
@@ -175,13 +216,13 @@ public class HttpUtil {
 			String result = EntityUtils.toString(response.getEntity(), "utf-8");
 			return result;
 		} catch (Exception e) {
-			e.printStackTrace();
+			ToolLog.log("HttpUtil.postJson error={}", e);
 		} finally {
 			if (response != null) {
 				try {
 					response.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					ToolLog.log("HttpUtil.postJson close response error={}", e);
 				}
 			}
 		}
@@ -208,13 +249,13 @@ public class HttpUtil {
 			String result = EntityUtils.toString(response.getEntity(), "utf-8");
 			return result;
 		} catch (Exception e) {
-			e.printStackTrace();
+			ToolLog.log("HttpUtil.postXML error={}", e);
 		} finally {
 			if (response != null) {
 				try {
 					response.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					ToolLog.log("HttpUtil.postXML close response error={}", e);
 				}
 			}
 		}
@@ -233,20 +274,50 @@ public class HttpUtil {
 			HttpGet get = new HttpGet(url);
 			config(get);
 			response = (CloseableHttpResponse) getInstance().execute(get);
-			String result = EntityUtils.toString(response.getEntity(), "utf-8");
-			return result;
+			return EntityUtils.toString(response.getEntity(), "utf-8");
 		} catch (Exception e) {
-			e.printStackTrace();
+			ToolLog.log("HttpUtil.doGet error={}", e);
 		} finally {
 			if (response != null) {
 				try {
 					response.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					ToolLog.log("HttpUtil.doGet close response error={}", e);
 				}
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * get请求下载文件
+	 * 
+	 * @param url 地址
+	 * @param filePath 文件保存路径
+	 * @return
+	 */
+	public static void doGetDownload(String url, String filePath) {
+		CloseableHttpResponse response = null;
+		InputStream in = null;
+		FileOutputStream fos = null;
+		try {
+			HttpGet get = new HttpGet(url);
+			config(get);
+			response = (CloseableHttpResponse) getInstance().execute(get);
+			HttpEntity entity = response.getEntity();
+			in = entity.getContent();
+			File file = new File(filePath);
+			fos = new FileOutputStream(file);
+			int l;
+			byte[] tmp = new byte[1024];
+			while ((l = in.read(tmp)) != -1) {
+				fos.write(tmp, 0, l);
+			}
+			fos.flush();
+			EntityUtils.consume(entity);
+		} catch (Exception e) {
+			ToolLog.log("HttpUtil.doGetDownload error={}", e);
+		}
 	}
 
 }

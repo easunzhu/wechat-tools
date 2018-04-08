@@ -67,18 +67,16 @@ public abstract class AbstractServiceHandler implements ServiceHandler {
 	 * @throws Exception
 	 */
 	public String handler(MessageReq msg) throws Exception {
-		if (WxConstants.XML_TEXT.equals(msg.getMsgType())) {
-			if (null == messageHandler) {
-				throw new NullPointerException("message handler is null...");
-			}
-			return messageHandler.handle(msg);
-		} else if (WxConstants.XML_EVENT.equals(msg.getMsgType())) {
+		if (WxConstants.XML_EVENT.equals(msg.getMsgType())) {
 			if (null == eventHandler) {
 				throw new NullPointerException("event message handler is null...");
 			}
 			return eventHandler.handle(msg);
 		} else {
-			throw new NullPointerException("no processor is available ...");
+			if (null == messageHandler) {
+				throw new NullPointerException("message handler is null...");
+			}
+			return messageHandler.handle(msg);
 		}
 	}
 

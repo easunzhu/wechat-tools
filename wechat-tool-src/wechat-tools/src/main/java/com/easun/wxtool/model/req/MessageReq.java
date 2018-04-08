@@ -7,30 +7,31 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class MessageReq {
 
 	private String toUserName;
-
 	private String fromUserName;
-
 	private long createTime;
-
-	// 消息类型（text/event/image/location/link/video/voice/shortvideo）
 	private String msgType;
-
-	private long msgId;
-
 	private String content;
-
-	// subscribe(订阅)、unsubscribe(取消订阅),SCAN,LOCATION,CLICK,VIEW
+	private String picUrl;
+	private String mediaId;
+	private String format;
+	private String recognition;
+	private String thumbMediaId;
+	private String location_X;
+	private String location_Y;
+	private String scale;
+	private String label;
+	private String title;
+	private String description;
+	private String url;
+	private Long msgId;
 	private String event;
-
 	private String eventKey;
-
 	private String ticket;
-
 	private String latitude;
-
 	private String longitude;
-
 	private String precision;
+	private String massMsgID;
+	private String status;
 
 	public String getToUserName() {
 		return toUserName;
@@ -68,12 +69,120 @@ public class MessageReq {
 		this.msgType = msgType;
 	}
 
-	public long getMsgId() {
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	@XmlElement(name = "PicUrl")
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
+
+	public String getMediaId() {
+		return mediaId;
+	}
+
+	@XmlElement(name = "MediaId")
+	public void setMediaId(String mediaId) {
+		this.mediaId = mediaId;
+	}
+
+	public String getFormat() {
+		return format;
+	}
+
+	@XmlElement(name = "Format")
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public String getRecognition() {
+		return recognition;
+	}
+
+	@XmlElement(name = "Recognition")
+	public void setRecognition(String recognition) {
+		this.recognition = recognition;
+	}
+
+	public String getThumbMediaId() {
+		return thumbMediaId;
+	}
+
+	@XmlElement(name = "ThumbMediaId")
+	public void setThumbMediaId(String thumbMediaId) {
+		this.thumbMediaId = thumbMediaId;
+	}
+
+	public String getLocation_X() {
+		return location_X;
+	}
+
+	@XmlElement(name = "Location_X")
+	public void setLocation_X(String location_X) {
+		this.location_X = location_X;
+	}
+
+	public String getLocation_Y() {
+		return location_Y;
+	}
+
+	@XmlElement(name = "Location_Y")
+	public void setLocation_Y(String location_Y) {
+		this.location_Y = location_Y;
+	}
+
+	public String getScale() {
+		return scale;
+	}
+
+	@XmlElement(name = "Scale")
+	public void setScale(String scale) {
+		this.scale = scale;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	@XmlElement(name = "Label")
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	@XmlElement(name = "Title")
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	@XmlElement(name = "Description")
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	@XmlElement(name = "Url")
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public Long getMsgId() {
 		return msgId;
 	}
 
 	@XmlElement(name = "MsgId")
-	public void setMsgId(long msgId) {
+	public void setMsgId(Long msgId) {
 		this.msgId = msgId;
 	}
 
@@ -140,11 +249,32 @@ public class MessageReq {
 		this.precision = precision;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	@XmlElement(name = "Status")
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getMassMsgID() {
+		return massMsgID;
+	}
+
+	@XmlElement(name = "MsgID")
+	public void setMassMsgID(String massMsgID) {
+		this.massMsgID = massMsgID;
+	}
+
 	@Override
 	public String toString() {
 		return "MessageReq [toUserName=" + toUserName + ", fromUserName=" + fromUserName + ", createTime=" + createTime + ", msgType=" + msgType
-				+ ", msgId=" + msgId + ", content=" + content + ", event=" + event + ", eventKey=" + eventKey + ", ticket=" + ticket + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", precision=" + precision + "]";
+				+ ", content=" + content + ", picUrl=" + picUrl + ", mediaId=" + mediaId + ", format=" + format + ", recognition=" + recognition
+				+ ", thumbMediaId=" + thumbMediaId + ", location_X=" + location_X + ", location_Y=" + location_Y + ", scale=" + scale + ", label="
+				+ label + ", title=" + title + ", description=" + description + ", url=" + url + ", msgId=" + msgId + ", event=" + event
+				+ ", eventKey=" + eventKey + ", ticket=" + ticket + ", latitude=" + latitude + ", longitude=" + longitude + ", precision=" + precision
+				+ ", massMsgID=" + massMsgID + ", status=" + status + "]";
 	}
 
 }

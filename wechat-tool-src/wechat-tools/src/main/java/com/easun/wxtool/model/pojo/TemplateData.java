@@ -5,7 +5,9 @@ package com.easun.wxtool.model.pojo;
  */
 public class TemplateData {
 
+	// 内容
 	private String value;
+	// 颜色
 	private String color;
 
 	public String getValue() {

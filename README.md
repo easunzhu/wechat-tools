@@ -16,6 +16,7 @@
   
 ### 依赖jar包：
 httpclient  
+httpmime   
 commons-lang3  
 fastjson  
 slf4j-api  
